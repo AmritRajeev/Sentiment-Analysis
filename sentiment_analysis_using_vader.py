@@ -26,6 +26,7 @@ def sentiment_scores(sentence):
 if __name__ == "__main__" :
 
     df=pd.read_csv(r"C:\Users\User\Desktop\python prgs\Tweets.csv")
-    for i in range(1,11): 
+    for i in range(1,12): 
                 sentence=df.text[i]
                 sentiment_scores(sentence)
+                print("The sentence is",sentiment_scores(sentence))
