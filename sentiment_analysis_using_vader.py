@@ -6,33 +6,26 @@ import numpy as np
 import matplotlib as plt
 import pandas as pd
 
-def sentiment_scores(sentence,sentiment):  
+def sentiment_scores(sentence):  
     sent_obj = SentimentIntensityAnalyzer() 
  
     sentiment_dict = sent_obj.polarity_scores(sentence) 
-      
-    print("Overall sentiment dictionary is : ", sentiment_dict) 
-    print("sentence was rated as ", sentiment_dict['neg']*100, "% Negative") 
-    print("sentence was rated as ", sentiment_dict['neu']*100, "% Neutral") 
-    print("sentence was rated as ", sentiment_dict['pos']*100, "% Positive") 
-  
-    print("Sentence Overall Rated As", end = " ") 
    
     if sentiment_dict['compound'] >= 0.05 : 
-        print("Positive")
-        return 1
+        return "positive"
         
     elif sentiment_dict['compound'] <= - 0.05 : 
-        print("Negative")
-        return 0
+        return "negative"
   
     else : 
-        print("Neutral")
+        return "neutral"
 
 
         
 # Driver code 
 if __name__ == "__main__" :
 
-    sentence = ""
-    sentiment_scores(sentence)
+    df=pd.read_csv(r"C:\Users\User\Desktop\python prgs\Tweets.csv")
+    for i in range(1,11): 
+                sentence=df.text[i]
+                sentiment_scores(sentence)
